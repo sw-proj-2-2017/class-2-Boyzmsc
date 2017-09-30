@@ -50,9 +50,13 @@ def doScoreDB(scdb):
         elif parse[0] == 'del':
             check_scdb = scdb[:]
             for l in range(len(scdb)):
-                for p in scdb:
-                    if p['Name'] == parse[1]:
-                        scdb.remove(p)
+                k = scdb[len(scdb)-l-1]
+                if k['Name'] == parse[1]:
+                    scdb.remove(k)
+            for j in range(len(scdb)):
+                p = scdb[len(scdb)-j-1]
+                if p['Name'] == parse[1]:
+                    scdb.remove(p)
             if len(check_scdb) == len(scdb):
                 print("Not Found")
                 continue
