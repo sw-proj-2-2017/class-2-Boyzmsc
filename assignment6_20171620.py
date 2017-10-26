@@ -149,11 +149,14 @@ class ScoreDB(QWidget):
         self.resultbox.setPlainText(result)
 
     def addScoreDB(self):
-        intage = int(self.agebox.text())
-        intscore = int(self.scorebox.text())
-        record = {'Name': self.namebox.text(), 'Age': intage, 'Score': intscore}
-        self.scdb += [record]
-        self.showScoreDB("Name")
+        try:
+            intage = int(self.agebox.text())
+            intscore = int(self.scorebox.text())
+            record = {'Name': self.namebox.text(), 'Age': intage, 'Score': intscore}
+            self.scdb += [record]
+            self.showScoreDB("Name")
+        except ValueError:
+            self.resultbox.setPlainText("TypeError")
 
     def delScoreDB(self):
         self.check_scdb = self.scdb[:]
@@ -181,16 +184,18 @@ class ScoreDB(QWidget):
             self.resultbox.setPlainText("Not Found")
 
     def incScoreDB(self):
-        rep = 0
-        intamount = int(self.amountbox.text())
-        for j in self.scdb:
-            if j['Name'] == self.namebox.text():
-                rep += 1
-                j['Score'] = int(j['Score']) + intamount
-        if rep == 0:
-            self.resultbox.setPlainText("Not Found")
-        self.showScoreDB("Name")
-
+        try:
+            rep = 0
+            intamount = int(self.amountbox.text())
+            for j in self.scdb:
+                if j['Name'] == self.namebox.text():
+                    rep += 1
+                    j['Score'] = int(j['Score']) + intamount
+            self.showScoreDB("Name")
+            if rep == 0:
+                self.resultbox.setPlainText("Not Found")
+        except ValueError:
+            self.result.setPlainText("TypeError")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
