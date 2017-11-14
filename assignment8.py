@@ -74,7 +74,7 @@ class Calculator(QWidget):
 
     def buttonClicked(self):
 
-        if self.display.text() == 'Error!':
+        if (self.display.text() == 'Error!')or(self.display.text() == 'ValueError'):
             self.display.setText('')
 
         button = self.sender()
@@ -94,14 +94,17 @@ class Calculator(QWidget):
             self.display.setText(self.display.text() + constantList[key])
 
         elif key in functionList.keys():
-            num = eval(self.display.text())
-            num_btd = self.display.text()
-            n = functionList[key]
-            if n == 3:
-                value = calcFunctions.call(n,num_btd)
-            else:
-                value = calcFunctions.call(n,num)
-            self.display.setText(str(value))
+            try:
+                num = eval(self.display.text())
+                num_btd = self.display.text()
+                n = functionList[key]
+                if n == 3:
+                    value = calcFunctions.call(n,num_btd)
+                else:
+                    value = calcFunctions.call(n,num)
+                self.display.setText(str(value))
+            except:
+                self.display.setText("Error!")
         else:
             self.display.setText(self.display.text() + key)
 
