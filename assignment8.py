@@ -91,8 +91,6 @@ class Calculator(QWidget):
             self.display.clear()
 
         elif key in constantList.keys():
-            if (self.display.text() != ""):
-                self.display.setText("")
             self.display.setText(self.display.text() + constantList[key])
 
         elif key in functionList.keys():
