@@ -58,6 +58,8 @@ def romanToDec(Str):
     try:
         result = 0
         romanStr = str(Str)
+        if romanStr == "":
+            return 'Error!'
         for value, letter in romans:
             if (len(letter) == 1) and (len(romanStr) != 0):
                 while romanStr[0] == letter:
