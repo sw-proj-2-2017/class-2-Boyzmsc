@@ -42,13 +42,16 @@ def binToDec(numStr):
     return r
 
 def decToRoman(numStr):
+    result = ''
+    n = int(numStr)
     try:
-        result = ''
-        n = int(numStr)
-        for value,letter in romans:
-            while n >= value:
-                result += letter
-                n -= value
+        if (0 < n and n < 4000):
+            for value,letter in romans:
+                while n >= value:
+                    result += letter
+                    n -= value
+        else:
+            return 'Error!'
         return result
 
     except:
@@ -60,6 +63,7 @@ def romanToDec(Str):
         romanStr = str(Str)
         if romanStr == "":
             return 'Error!'
+        
         for value, letter in romans:
             if (len(letter) == 1) and (len(romanStr) != 0):
                 while romanStr[0] == letter:
@@ -67,7 +71,6 @@ def romanToDec(Str):
                     romanStr = romanStr[1:]
                     if len(romanStr) == 0:
                         break
-
             elif (len(letter) == 2) and (len(romanStr) != 0):
                 while romanStr[:2] == letter:
                     result += value
