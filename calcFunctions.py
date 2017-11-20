@@ -8,6 +8,8 @@ def call(n,num):
         return binToDec(num)
     elif n == 4:
         return decToRoman(num)
+    elif n == 5:
+        return romanToDec(num)
 
 def factorial(numStr):
     try:
@@ -40,7 +42,40 @@ def binToDec(numStr):
     return r
 
 def decToRoman(numStr):
-    return 'dec -> Roman'
+    try:
+        result = ''
+        n = int(numStr)
+        for value,letter in romans:
+            while n >= value:
+                result += letter
+                n -= value
+        return result
+
+    except:
+        return 'Error!'
+
+def romanToDec(Str):
+    try:
+        result = 0
+        romanStr = str(Str)
+        for value, letter in romans:
+            if (len(letter) == 1) and (len(romanStr) != 0):
+                while romanStr[0] == letter:
+                    result += value
+                    romanStr = romanStr[1:]
+                    if len(romanStr) == 0:
+                        break
+
+            elif (len(letter) == 2) and (len(romanStr) != 0):
+                while romanStr[:2] == letter:
+                    result += value
+                    romanStr = romanStr[2:]
+                    if len(romanStr) == 0:
+                        break
+        return result
+
+    except:
+        return 'Error!'
 
 
 
