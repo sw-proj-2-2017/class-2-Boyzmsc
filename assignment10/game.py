@@ -1,7 +1,7 @@
 from hangman import Hangman
 from guess import Guess
 from word import Word
-
+import re
 
 def gameMain():
     word = Word('words.txt')
@@ -26,15 +26,21 @@ def gameMain():
         if guessedChar in guess.guessedChars:
             print('You already guessed \"' + guessedChar + '\"')
             continue
+        if re.search('[^a-z]', guessedChar):
+            print('You must select a letter!')
+            continue
+
 
         finished = guess.guess(guessedChar)
         if finished == True:
             break
 
     if finished == True:
+        print('word [' + guess.secretWord() + ']')
         print('Success')
     else:
         print(hangman.get(0))
+    
         print('word [' + guess.secretWord() + ']')
         print('guess [' + guess.currentStatus() + ']')
         print('Fail')
