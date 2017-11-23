@@ -1,3 +1,5 @@
+from keypad import romans
+from math import factorial as fact
 
 def call(n,num):
     if n == 1:
@@ -14,16 +16,12 @@ def call(n,num):
 def factorial(numStr):
     try:
         n = int(numStr)
-        if n == 0:
-            return 1
-        elif n == 1:
-            return n
-        elif n < 0:
+        if n < 0:
             return "ValueError"
-        else:
-            return factorial(n - 1) * n
+        r = str(fact(n))
     except:
-        return 'Error!'
+        r = 'Error!'
+    return r
 
 def decToBin(numStr):
     try:
