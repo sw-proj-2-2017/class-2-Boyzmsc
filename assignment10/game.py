@@ -27,7 +27,7 @@ def gameMain():
             print('You already guessed \"' + guessedChar + '\"')
             continue
         if re.search('[^a-z]', guessedChar):
-            print('You must select a letter!')
+            print('You must select a correct letter!')
             continue
 
 
