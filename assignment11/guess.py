@@ -13,7 +13,13 @@ class Guess:
     def guess(self, character):
         
         if re.search('[^a-z]', character):
-            return ('You must select a corret letter!')
+            return ('Error')
+
+        if len(character) != 1:
+            return ('Error')
+
+        if character in self.guessedChars:
+            return ('Error')
         
         else:
             self.guessedChars |= {character}
