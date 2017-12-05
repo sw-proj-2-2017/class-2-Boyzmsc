@@ -76,8 +76,8 @@ class TestGuess(unittest.TestCase):
     def testGuess(self):
         self.assertEqual(self.g1.guess('a'), True)
         self.assertEqual(self.g1.guess('x'), False)
-        self.assertEqual(self.g1.guess('ㄱ'), 'You must select a corret letter!')
-        self.assertEqual(self.g1.guess(')'), 'You must select a corret letter!')
+        self.assertEqual(self.g1.guess('ㄱ'), 'Error')
+        self.assertEqual(self.g1.guess(')'), 'Error')
 
 
 if __name__ == '__main__':
