@@ -1,3 +1,5 @@
+import re
+
 class Guess:
 
     def __init__(self, word):
@@ -9,22 +11,26 @@ class Guess:
 
 
     def guess(self, character):
-    
-        self.guessedChars |= {character}
-        if character not in self.secretWord:
-            return False
-
+        
+        if re.search('[^a-z]', character):
+            return ('You must select a corret letter!')
+        
         else:
-            currentStatus = ''
-            for c in self.secretWord:
-                if c in self.guessedChars:
-                    currentStatus += c
-                else:
-                    currentStatus += '_'
+            self.guessedChars |= {character}
+            if character not in self.secretWord:
+                return False
 
-            self.currentStatus = currentStatus
+            else:
+                currentStatus = ''
+                for c in self.secretWord:
+                    if c in self.guessedChars:
+                        currentStatus += c
+                    else:
+                        currentStatus += '_'
 
-            return True
+                self.currentStatus = currentStatus
+
+                return True
 
 
     def finished(self):
