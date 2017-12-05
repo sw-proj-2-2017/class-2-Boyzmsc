@@ -32,8 +32,7 @@ def gameMain():
         if success == False:
             hangman.decreaseLife()
             
-        if success == 'You must select a corret letter!':
-            print('You must select a corret letter!')
+        if success == 'Error':
             continue
         
         if guess.finished():
