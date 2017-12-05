@@ -15,9 +15,6 @@ class Guess:
         if re.search('[^a-z]', character):
             return ('Error')
 
-        if len(character) != 1:
-            return ('Error')
-
         if character in self.guessedChars:
             return ('Error')
         
