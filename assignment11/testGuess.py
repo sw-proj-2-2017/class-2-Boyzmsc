@@ -21,6 +21,10 @@ class TestGuess(unittest.TestCase):
         self.assertEqual(self.g1.displayCurrent(), '_ e _ a u _ t ')
         self.g1.guess('q')
         self.assertEqual(self.g1.displayCurrent(), '_ e _ a u _ t ')
+        self.g1.guess('ㄱ')
+        self.assertEqual(self.g1.displayCurrent(), '_ e _ a u _ t ')
+        self.g1.guess('3')
+        self.assertEqual(self.g1.displayCurrent(), '_ e _ a u _ t ')
 
     def testCurrentStatus(self):
         self.assertEqual(self.g1.currentStatus, '_e_____')
@@ -29,6 +33,12 @@ class TestGuess(unittest.TestCase):
         self.g1.guess('t')
         self.assertEqual(self.g1.currentStatus, '_e_a__t')
         self.g1.guess('u')
+        self.assertEqual(self.g1.currentStatus, '_e_au_t')
+        self.g1.guess('q')
+        self.assertEqual(self.g1.currentStatus, '_e_au_t')
+        self.g1.guess('ㄱ')
+        self.assertEqual(self.g1.currentStatus, '_e_au_t')
+        self.g1.guess('5')
         self.assertEqual(self.g1.currentStatus, '_e_au_t')
         self.g1.guess('f')
         self.assertEqual(self.g1.currentStatus, '_efau_t')
@@ -47,6 +57,10 @@ class TestGuess(unittest.TestCase):
         self.assertEqual(self.g1.displayGuessed(), ' a e n t u ')
         self.g1.guess('x')
         self.assertEqual(self.g1.displayGuessed(), ' a e n t u x ')
+        self.g1.guess('3')
+        self.assertEqual(self.g1.displayGuessed(), ' a e n t u x ')
+        self.g1.guess('ㄴ')
+        self.assertEqual(self.g1.displayGuessed(), ' a e n t u x ')
 
     def testFinished(self):
         self.assertEqual(self.g1.currentStatus, '_e_____')
@@ -61,6 +75,7 @@ class TestGuess(unittest.TestCase):
         
     def testGuess(self):
         self.assertEqual(self.g1.guess('a'), True)
+        self.assertEqual(self.g1.guess('x'), False)
         self.assertEqual(self.g1.guess('ㄱ'), 'You must select a corret letter!')
         self.assertEqual(self.g1.guess(')'), 'You must select a corret letter!')
 
