@@ -13,8 +13,9 @@ class TestWord(unittest.TestCase):
 
     def testTest(self):
         self.assertEqual(self.g3.test(), 'default')
-
-
+        
+    def testRandFromDB(self):
+        self.assertIn(self.g3.randFromDB(), self.g3.words)
 
 if __name__ == '__main__':
     unittest.main()
