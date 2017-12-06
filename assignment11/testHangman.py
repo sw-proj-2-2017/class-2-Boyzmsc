@@ -34,7 +34,9 @@ class TestHangman(unittest.TestCase):
 |          |
 |__________|\
 ''')
-
+        
+    def testInit(self):
+        self.assertEqual(self.g2.remainingLives, len(self.g2.text)-1)
 
 if __name__ == '__main__':
     unittest.main()
